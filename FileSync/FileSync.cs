@@ -7,14 +7,12 @@ using System.IO;
 
 namespace FileSync
 {
-    class FileUpdateMonitoring
+    class FileSync
     {
-
-
-        List<CatchFileM> catchFIleList = new List<CatchFileM>();
+        List<FileM> catchFIleList = new List<FileM>();
         Dictionary<string, int> screenFile = new Dictionary<string, int>();
 
-        public FileUpdateMonitoring()
+        public FileSync()
         {
             screenFile.Add(FileAttributes.ReadOnly.ToString(), 1);
             screenFile.Add(FileAttributes.Hidden.ToString(), 1);
@@ -30,40 +28,37 @@ namespace FileSync
             screenFile.Add(FileAttributes.Encrypted.ToString(), 16384);
             screenFile.Add(FileAttributes.IntegrityStream.ToString(), 32768);
             screenFile.Add(FileAttributes.NoScrubData.ToString(), 131072);
-
-
         }
 
 
 
         /// <summary>
-        /// 
+        /// 获取所有文件
         /// </summary>
         /// <param name="path"></param>
-        List<CatchFileM> FileLists(  string homePath,string path= null )
+        List<FileM> FileLists(string homePath, string path = null)
         {
             if (path == null)
                 path = homePath;
 
-            List<CatchFileM> catchFIleList = new List<CatchFileM>();
+            List<FileM> catchFIleList = new List<FileM>();
 
             var dirInfo = new DirectoryInfo(path);
             var dirs = dirInfo.GetDirectories();
             foreach (var dir in dirs)
             {
                 if (dir.Attributes == FileAttributes.Directory)
-                {
-                    Console.WriteLine(dir.Name);
-                    var items = FileLists(  homePath , dir.FullName);
+                {                    
+                    var items = FileLists(homePath, dir.FullName);
                     catchFIleList.AddRange(items);
                 }
             }
 
-            CatchFileM catchFile;
+            FileM catchFile;
             var files = dirInfo.GetFiles();
             foreach (var file in files)
             {
-                catchFile = new CatchFileM()
+                catchFile = new FileM()
                 {
                     Name = file.Name,
                     FullName = file.FullName.Replace(homePath, ""),
@@ -80,6 +75,32 @@ namespace FileSync
             return catchFIleList;
         }
 
+        /// <summary>
+        /// 文件重命名
+        /// </summary>
+        /// <param name="pathFrom"></param>
+        /// <param name="pathTo"></param>
+        public void FileReName(string pathFrom, string pathTo)
+        {
+            var fromFileList = FileLists(pathFrom);
+
+            var toFileList = FileLists(pathTo);
+
+            //add
+            var tempAdds = CalculateAddFile(fromFileList, toFileList);
+            foreach (var item in tempAdds)
+            {
+                Console.WriteLine($"add {item.FullName}");
+                string toPath = pathTo + item.Path;// Path.Combine(pathTo, item.Path);
+                if (!Directory.Exists(toPath))
+                {
+                    Directory.CreateDirectory(toPath);
+                }
+                string toFile = pathTo + item.FullName;//Path.Combine(pathTo, item.FullName);
+                File.Copy(pathFrom + item.FullName, toFile);
+            }
+
+        }
 
         public void CopyAddFile(string pathFrom, string pathTo)
         {
@@ -100,7 +121,7 @@ namespace FileSync
                 string toFile = pathTo + item.FullName;//Path.Combine(pathTo, item.FullName);
                 File.Copy(pathFrom + item.FullName, toFile);
             }
-             
+
         }
 
         public void CopyUpdFile(string pathFrom, string pathTo)
@@ -108,15 +129,15 @@ namespace FileSync
             var fromFileList = FileLists(pathFrom);
 
             var toFileList = FileLists(pathTo);
-             
+
             //upd
             var tempUpds = CalculateUpdFile(fromFileList, toFileList);
             foreach (var item in tempUpds)
             {
                 Console.WriteLine($"upd {item.FromFile.FullName} {item.FromFile.LastAccessTime}:{item.ToFile.LastAccessTime}");
-                File.Copy(pathFrom + item.FromFile.FullName, pathTo+ item.ToFile.FullName, true);
+                File.Copy(pathFrom + item.FromFile.FullName, pathTo + item.ToFile.FullName, true);
             }
-             
+
         }
 
         public void CopyDelFile(string pathFrom, string pathTo)
@@ -124,7 +145,7 @@ namespace FileSync
             var fromFileList = FileLists(pathFrom);
 
             var toFileList = FileLists(pathTo);
-             
+
             //del
             var tempDels = CalculateDelFile(fromFileList, toFileList);
             foreach (var item in tempDels)
@@ -136,8 +157,6 @@ namespace FileSync
 
         }
 
-        
-         
         public void CopyAddFile1(string pathFrom, string pathTo)
         {
             var fromFileList = FileLists(pathFrom);
@@ -199,7 +218,7 @@ namespace FileSync
         /// <param name="fromFileList"></param>
         /// <param name="toFileList"></param>
         /// <returns></returns>
-        List<CatchFileM> CalculateAddFile(List<CatchFileM> fromFileList, List<CatchFileM> toFileList)
+        List<FileM> CalculateAddFile(List<FileM> fromFileList, List<FileM> toFileList)
         {
             var temps = from f in fromFileList
                         join t in toFileList
@@ -222,7 +241,7 @@ namespace FileSync
         /// <param name="fromFileList"></param>
         /// <param name="toFileList"></param>
         /// <returns></returns>
-        List<CalcuateFileM> CalculateUpdFile(List<CatchFileM> fromFileList, List<CatchFileM> toFileList)
+        List<CalcuateFileM> CalculateUpdFile(List<FileM> fromFileList, List<FileM> toFileList)
         {
             var temps = from f in fromFileList
                         join t in toFileList
@@ -247,7 +266,7 @@ namespace FileSync
         /// <param name="fromFileList"></param>
         /// <param name="toFileList"></param>
         /// <returns></returns>
-        List<CalcuateFileM> CalculateMoveFile(List<CatchFileM> fromFileList, List<CatchFileM> toFileList)
+        List<CalcuateFileM> CalculateMoveFile(List<FileM> fromFileList, List<FileM> toFileList)
         {
             var temps = from t in toFileList
                         join f in fromFileList
@@ -271,7 +290,7 @@ namespace FileSync
         /// <param name="fromFileList"></param>
         /// <param name="toFileList"></param>
         /// <returns></returns>
-        List<CatchFileM> CalculateDelFile(List<CatchFileM> fromFileList, List<CatchFileM> toFileList)
+        List<FileM> CalculateDelFile(List<FileM> fromFileList, List<FileM> toFileList)
         {
             var temps = from t in toFileList
                         join f in fromFileList
@@ -294,7 +313,7 @@ namespace FileSync
         /// <param name="fromFileList"></param>
         /// <param name="toFileList"></param>
         /// <returns></returns>
-        List<CalcuateFileM> CalculateToUpdFile(List<CatchFileM> fromFileList, List<CatchFileM> toFileList)
+        List<CalcuateFileM> CalculateToUpdFile(List<FileM> fromFileList, List<FileM> toFileList)
         {
             var temps = from t in toFileList
                         join f in fromFileList
@@ -325,8 +344,6 @@ namespace FileSync
             Console.WriteLine(time);
             //GetLastWriteFile(Path, time);
 
-
-
             foreach (var file in catchFIleList.Where(m => m.MonitorintTime != time && m.FilOperation != FilOperation.Delete))
             {
                 file.FilOperation = FilOperation.Delete;
@@ -352,12 +369,12 @@ namespace FileSync
                 }
             }
 
-            CatchFileM catchFile;
+            FileM catchFile;
             var files = dirInfo.GetFiles();
 
             foreach (var file in files)
             {
-                catchFile = new CatchFileM()
+                catchFile = new FileM()
                 {
                     FullName = file.FullName,
                     Path = file.DirectoryName,
@@ -438,84 +455,11 @@ namespace FileSync
 
     }
 
-    /// <summary>
-    /// 计算移动
-    /// </summary>
-    public class CalcuateFileM
-    {
-        /// <summary>
-        /// 源
-        /// </summary>
-        public CatchFileM FromFile { get; set; }
 
-        /// <summary>
-        /// 目标
-        /// </summary>
-        public CatchFileM ToFile { get; set; }
-    }
 
-    public class CatchFileM
-    {
-        /// <summary>
-        /// 文件名称
-        /// </summary>
-        public string Name { get; set; }
 
-        /// <summary>
-        /// 文件全称
-        /// </summary>
-        public string FullName { get; set; }
 
-        /// <summary>
-        /// 文件路径
-        /// </summary>
-        public string Path { get; set; }
 
-        /// <summary>
-        /// 扩展名
-        /// </summary>
-        public string Extension { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreationTime { get; set; }
-
-        /// <summary>
-        /// 最后写入时间
-        /// </summary>
-        public DateTime LastWriteTime { get; set; }
-
-        /// <summary>
-        /// 最后访问时间
-        /// </summary>
-        public DateTime LastAccessTime { get; set; }
-
-        /// <summary>
-        /// 文件当前状态
-        /// </summary>
-        public FileStatus FileStatus { get; set; } = FileStatus.Normal;
-
-        /// <summary>
-        /// 操作属性
-        /// </summary>
-        public FilOperation FilOperation { get; set; } = FilOperation.Normal;
-
-        /// <summary>
-        /// 监控扫描时间
-        /// </summary>
-        public DateTime MonitorintTime { get; set; }
-
-        /// <summary>
-        /// 获取或设置当前文件或目录的属性。
-        /// </summary>
-        public FileAttributes Attributes { get; set; }
-
-        /// <summary>
-        /// 文档大小
-        /// </summary>
-        public long Length { get; set; }
-    }
 
     /// <summary>
     /// 操作属性
