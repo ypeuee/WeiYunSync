@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace FileSync
 {
@@ -30,6 +31,39 @@ namespace FileSync
             screenFile.Add(FileAttributes.NoScrubData.ToString(), 131072);
         }
 
+        /// <summary>
+        /// 执行文件同步
+        /// </summary>
+        /// <param name="config"></param>
+        public void Exectue(IConfigurationRoot config)
+        {
+            //源路径
+            string pathFrom = config["FileSync.PathFrom"];// @"D:\testFrom";
+            //目的路径
+            string pathTo = config["FileSync.PathTo"];// @"D:\testTo";
+
+            Console.WriteLine($"pathFrom: {pathFrom}");
+            Console.WriteLine($"pathTo: {pathTo}");
+            var dirSync = new DirectoriesSync();
+            var fileSync = new FileSync();
+
+            do
+            {
+
+                dirSync.DirectoriesReName(pathFrom, pathTo);
+
+                //文件
+                fileSync.CopyAddFile(pathFrom, pathTo);
+                fileSync.CopyUpdFile(pathFrom, pathTo);
+                fileSync.CopyDelFile(pathFrom, pathTo);
+                //文件夹
+                dirSync.CopyAddDirectories(pathFrom, pathTo);
+                dirSync.CopyDelDirectories(pathFrom, pathTo);
+
+                System.Threading.Thread.Sleep(1000);
+            } while (true);
+
+        }
 
 
         /// <summary>
@@ -48,7 +82,7 @@ namespace FileSync
             foreach (var dir in dirs)
             {
                 if (dir.Attributes == FileAttributes.Directory)
-                {                    
+                {
                     var items = FileLists(homePath, dir.FullName);
                     catchFIleList.AddRange(items);
                 }
