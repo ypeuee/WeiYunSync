@@ -38,12 +38,24 @@ namespace FileSync
         public void Exectue(IConfigurationRoot config)
         {
             //源路径
-            string pathFrom = config["FileSync.PathFrom"];// @"D:\testFrom";
-            //目的路径
-            string pathTo = config["FileSync.PathTo"];// @"D:\testTo";
-
+            string pathFrom = config["FileSync:PathFrom"];// @"D:\testFrom";
             Console.WriteLine($"pathFrom: {pathFrom}");
+            if (!Directory.Exists(pathFrom))
+            {
+                Console.WriteLine($"源路径【FileSync:PathFrom】错误。{pathFrom}");
+                return;
+            }
+
+            //目的路径
+            string pathTo = config["FileSync:PathTo"];// @"D:\testTo";
             Console.WriteLine($"pathTo: {pathTo}");
+            if (!Directory.Exists(pathTo))
+            {
+                Console.WriteLine($"目的路径【FileSync:PathTo】错误。{pathTo}");
+                return;
+            }
+
+
             var dirSync = new DirectoriesSync();
             var fileSync = new FileSync();
 
@@ -61,7 +73,7 @@ namespace FileSync
                 dirSync.CopyDelDirectories(pathFrom, pathTo);
 
                 System.Threading.Thread.Sleep(1000);
-            } while (true);
+            } while (bool.Parse(config["FileSync:Repeatedly"]));
 
         }
 
