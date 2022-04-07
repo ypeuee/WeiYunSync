@@ -1,7 +1,11 @@
-# FileSync
-高仿微云同步助手
-项目还在开发中
+# .NetCore WPF高仿微云同步助手
+__项目还在开发中__
+
+.Net Core 5.0 WPF
+
 原本只是想做个小工具，用于同步文件夹到移动硬盘，使指定的文件夹内容保持一致。功能开发完成之后，又想添加漂亮的UI页面。
+
+本项目UI使用.net core wpf开发，所有图标都是代码画出来。图标源于 [Material Design Icons](https://materialdesignicons.com/)
 
 ## 主页面比较
 ![image](https://user-images.githubusercontent.com/20987728/162140742-2f6c0a60-ed45-41dc-ad40-9a0a373ecdf7.png)
