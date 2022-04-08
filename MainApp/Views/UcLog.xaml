@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="470"  d:DesignWidth="340" Background="White">
     <Grid>
-            
+        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top">
+            <CheckBox Content="仅显示同步失败的记录" />
+            <Button Content="清空历史记录" Width="90" Style="{StaticResource CloseHistoryStyle}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
