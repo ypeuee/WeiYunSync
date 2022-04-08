@@ -1,14 +1,20 @@
-﻿<Window x:Class="MainApp.MainWindow"
-         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<src:BaseWindow x:Class="MainApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MainApp"
+        xmlns:src="clr-namespace:MainApp" 
         xmlns:views="clr-namespace:MainApp.Views"
         FontFamily="Microsoft Yahei UI"
         mc:Ignorable="d"    
-        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
-       Title="MainWindow" Height="524" Width="340" Background="White"  >
+       
+        Title="MainWindow" 
+        WindowStartupLocation="CenterScreen" Background="White"
+        WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize"  
+        Height="524" Width="340" 
+        MinHeight="524" MinWidth="340" 
+        MaxHeight="524" MaxWidth="340" 
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="54"/>
@@ -25,8 +31,8 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <!--<views:UcMain/>-->
-            <views:UcScan/>
+            <views:UcMain/>
+            <!--<views:UcScan/>-->
         </Grid>
     </Grid>
-</Window>
+</src:BaseWindow>
