@@ -31,5 +31,7 @@ GOOD
         </TextBlock>
 
 
+        <CheckBox Content="同步" Style="{StaticResource myCheckStyle}" />
+        
     </Grid>
 </UserControl>

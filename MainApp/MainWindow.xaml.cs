@@ -19,7 +19,7 @@ namespace MainApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : BaseWindow
     {
         private Random random = new Random(DateTime.Now.Millisecond);
 
@@ -27,9 +27,8 @@ namespace MainApp
         {
             InitializeComponent();
 
-            // 鼠标左键拖动
-            MouseLeftButtonDown += (sender, e) => { this.DragMove(); };
-             
+           
+
         }
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace MainApp
 
 
 
-      
-      
+
+
     }
 }

@@ -70,7 +70,7 @@
                            
                        Background="{StaticResource MainView.Static.Background}"
                        Foreground="{StaticResource MainView.Static.Foreground}" />
-                <Button Height="32" Width="90"  Content="查看历史记录" Style="{StaticResource HistoryStyle}" Background="#FF7F7F7F" />
+                <Button Height="32" Width="90"  Content="查看历史记录" Style="{StaticResource HistoryStyle}" Background="#FF7F7F7F" Click="ButHistory_Click" />
             </StackPanel>
         </Grid>
 
