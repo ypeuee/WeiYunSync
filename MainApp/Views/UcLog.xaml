@@ -6,10 +6,26 @@
              xmlns:local="clr-namespace:MainApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="470"  d:DesignWidth="340" Background="White">
+
     <Grid>
-        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top">
-            <CheckBox Content="仅显示同步失败的记录" />
-            <Button Content="清空历史记录" Width="90" Style="{StaticResource CloseHistoryStyle}"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <CheckBox Content="仅显示同步失败的记录"  Height="15" />
+                <Button Content="清空历史记录" Margin="10,0,10,0" FontSize="14" Height="15" Style="{StaticResource CloseHistoryStyle}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TreeView x:Name="TreeViewOrg" Width="340"  BorderThickness="0" 
+                      Background="White" HorizontalAlignment="Left"                      
+                      ItemTemplate="{StaticResource ItemNode}" 
+                      Style="{StaticResource DefaultTreeView}">
+             
+            </TreeView>
+
+        </Grid>
     </Grid>
 </UserControl>
