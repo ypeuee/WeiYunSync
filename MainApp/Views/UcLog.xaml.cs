@@ -16,16 +16,48 @@ namespace MainApp.Views
         {
             InitializeComponent();
 
-
             InitData();
         }
 
+        //初始化显示和历史记录
         private void InitData()
         {
-
             TreeViewOrg.ItemsSource = TreeviewDataInit.Instance.OrgList;
+
+            if (TreeviewDataInit.Instance.OrgList.Count == 0)
+            {
+                StackPanel1.Visibility = Visibility.Visible;
+                TreeViewOrg.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                StackPanel1.Visibility = Visibility.Hidden;
+                TreeViewOrg.Visibility = Visibility.Visible;
+            }
         }
 
+        /// <summary>
+        /// 清空历史记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnHistory(object sender, RoutedEventArgs e)
+        {
+            StackPanel1.Visibility = Visibility.Visible;
+            TreeViewOrg.Visibility = Visibility.Hidden;
+
+            LblMsg.Content = $"{(CbxError.IsChecked == true ? "错误" : "历史")}历史记录为空";
+        }
+         
+        /// <summary>
+        /// 显示错误记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CbxError_Click(object sender, RoutedEventArgs e)
+        {
+            LblMsg.Content = $"{(CbxError.IsChecked == true ? "错误" : "历史")}历史记录为空";
+        }
     }
 
 
@@ -137,7 +169,6 @@ namespace MainApp.Views
         public string Info { get; set; }
         public int Count { get; set; }
     }
-
 
     public class BoolToVisible : IValueConverter
     {

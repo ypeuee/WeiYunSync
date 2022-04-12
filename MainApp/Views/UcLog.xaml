@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <CheckBox Content="仅显示同步失败的记录"  Height="15" />
-                <Button Content="清空历史记录" Margin="10,0,10,0" FontSize="14" Height="15" Style="{StaticResource CloseHistoryStyle}"/>
+                <CheckBox x:Name="CbxError" Content="仅显示同步失败的记录"  Height="15" Click="CbxError_Click" />
+                <Button Content="清空历史记录" Margin="10,0,10,0" FontSize="14" Height="15" Style="{StaticResource CloseHistoryStyle}" Click="BtnHistory"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -23,9 +23,11 @@
                       Background="White" HorizontalAlignment="Left"                      
                       ItemTemplate="{StaticResource ItemNode}" 
                       Style="{StaticResource DefaultTreeView}">
-             
             </TreeView>
-
+            <StackPanel Name="StackPanel1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image  Stretch="None" Source="/Images/history.png" />
+                <Label Name="LblMsg" Content="历史记录为空" HorizontalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
