@@ -28,6 +28,26 @@
                 <Image  Stretch="None" Source="/Images/history.png" />
                 <Label Name="LblMsg" Content="历史记录为空" HorizontalAlignment="Center"/>
             </StackPanel>
+            <Viewbox Width="180" Height="180" Margin="83,108,77,132" >
+                <Canvas Width="180" Height="180">
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="2" Data="M85,5 A50,50 0 1 0 85,150 "/>
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="2" Data="M85,5 A50,50 0 1 1 85,150 "/>
+
+                    <Path Stroke="#FFC5E0FB" StrokeThickness="4" Data="M85,8 A50,50 0 1 0 85,147 "/>
+                    <Path Stroke="#FFC5E0FB" StrokeThickness="4" Data="M85,8 A50,50 0 1 1 85,147 "/>
+
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,69 A10,10 0 1 0 85,89 "/>
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,69 A10,10 0 1 1 85,89 "/>
+
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M78,72 L84,30 L90,70"/>
+                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,89 L110,105 L95,80"/>
+                    
+                    <!--<Path Stroke="Black" StrokeThickness="2" Data="M80,5 A55,50 0 1 1 80,150 "/>-->
+
+                     
+                </Canvas>
+            </Viewbox>
+
         </Grid>
     </Grid>
 </UserControl>
