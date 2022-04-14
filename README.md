@@ -15,3 +15,6 @@ __项目还在开发中__
 ![image](https://user-images.githubusercontent.com/20987728/162140859-7fc965b2-cb65-49a3-8405-663f466fcc5f.png)
 ![image](https://user-images.githubusercontent.com/20987728/162140394-07d6d1ea-d058-40a2-84d7-bb096c7addc0.png)
 
+## 历史记录为空时画面
+![1](https://user-images.githubusercontent.com/20987728/163338985-6288fa71-a569-451f-82b0-7c1db66d34e3.png)
+![2](https://user-images.githubusercontent.com/20987728/163339025-801636de-8149-46b9-885a-fac9886c9bf3.png)
