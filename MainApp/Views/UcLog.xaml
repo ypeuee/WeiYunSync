@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="MainApp.Views.UcLog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MainApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="470"  d:DesignWidth="340" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <CheckBox x:Name="CbxError" Content="仅显示同步失败的记录"  Height="15" Click="CbxError_Click" />
+                <Button Content="清空历史记录" Margin="10,0,10,0" FontSize="14" Height="15" Style="{StaticResource CloseHistoryStyle}" Click="BtnHistory"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TreeView x:Name="TreeViewOrg" Width="340"  BorderThickness="0" 
+                      Background="White" HorizontalAlignment="Left"                      
+                      ItemTemplate="{StaticResource ItemNode}" 
+                      Style="{StaticResource DefaultTreeView}">
+            </TreeView>
+            <Grid Name="StackPanel1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<Image  Stretch="None" Source="/Images/history.png" />-->
+                <Viewbox Width="180" Height="180" Margin="83,108,77,132" >
+                    <Canvas Width="180" Height="180">
+                        <Path StrokeThickness="0" Fill="#FFC5E0FB" Data="M60,148 C -120,170 225,190 160,152 "/>
+                        <Path Stroke="#FFC5E0FB" StrokeThickness="10" Data="M15,79 A70,70 0 1 0 15,78 Z " Canvas.Top="0.0"/>
+                        <Path Stroke="#FF6FB3F6" StrokeThickness="3" Data="M11,81 A73,73 0 1 0 11,76 Z M74,80 A10,10 0 1 0 74,77 Z M78,72 L84,30 M 84,30 L90,70 M85,89 L110,105 M110,105 L95,80" Canvas.Top="0.0"/>
+                        <Path Fill="White"  Data="M136 146 A17,17 0 1 1 129,126 "/>
+                        <Path Stroke="#FF6FB3F6"  StrokeThickness="3" Fill="White" Data="M82,150 S 90,164 108,153 M106 146 A17,17 0 1 1 109,126 M109,125 C100,170 130,169 123,139 M124,151 Q 128,150 130,151 M129,151 C123,165 162,168 154,153 M134,131 Q 122,159 161,151 M145,136 Q 166,131 160,152 M109,127 S 150,110 146,136 "/>
+                    </Canvas>
+                </Viewbox>
+           
+            <Label Name="LblMsg" Margin="0,170,0,0"  Height="30" FontSize="15" Content="历史记录为空" HorizontalAlignment="Center" Foreground="#FF7F7F7F"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

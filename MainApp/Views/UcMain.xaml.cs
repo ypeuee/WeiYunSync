@@ -48,5 +48,31 @@ namespace MainApp.Views
 
         }
 
+
+
+        private void ButHistory_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            var logView = new LogWindow();
+            logView.Show();
+            logView.Left = mainWindow.Left + mainWindow.Width + 5;
+            logView.Top = mainWindow.Top;
+            //logView.Activate();
+            mainWindow.LocationChanged += (dnO, dmE) =>
+            {
+                if (logView.Visibility == Visibility.Visible)
+                {
+                    logView.Left = ((Window)dnO).Left + mainWindow.Width + 5;
+                    logView.Top = ((Window)dnO).Top;
+                    logView.Activate();
+                }
+            };         
+
+        }
+
+       
+
+
+
     }
 }
