@@ -24,29 +24,20 @@
                       ItemTemplate="{StaticResource ItemNode}" 
                       Style="{StaticResource DefaultTreeView}">
             </TreeView>
-            <StackPanel Name="StackPanel1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image  Stretch="None" Source="/Images/history.png" />
-                <Label Name="LblMsg" Content="历史记录为空" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <Viewbox Width="180" Height="180" Margin="83,108,77,132" >
-                <Canvas Width="180" Height="180">
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="2" Data="M85,5 A50,50 0 1 0 85,150 "/>
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="2" Data="M85,5 A50,50 0 1 1 85,150 "/>
-
-                    <Path Stroke="#FFC5E0FB" StrokeThickness="4" Data="M85,8 A50,50 0 1 0 85,147 "/>
-                    <Path Stroke="#FFC5E0FB" StrokeThickness="4" Data="M85,8 A50,50 0 1 1 85,147 "/>
-
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,69 A10,10 0 1 0 85,89 "/>
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,69 A10,10 0 1 1 85,89 "/>
-
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M78,72 L84,30 L90,70"/>
-                    <Path Stroke="#FF6EB2F6" StrokeThickness="3" Data="M85,89 L110,105 L95,80"/>
-                    
-                    <!--<Path Stroke="Black" StrokeThickness="2" Data="M80,5 A55,50 0 1 1 80,150 "/>-->
-
-                     
-                </Canvas>
-            </Viewbox>
+            <Grid Name="StackPanel1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<Image  Stretch="None" Source="/Images/history.png" />-->
+                <Viewbox Width="180" Height="180" Margin="83,108,77,132" >
+                    <Canvas Width="180" Height="180">
+                        <Path StrokeThickness="0" Fill="#FFC5E0FB" Data="M60,148 C -120,170 225,190 160,152 "/>
+                        <Path Stroke="#FFC5E0FB" StrokeThickness="10" Data="M15,79 A70,70 0 1 0 15,78 Z " Canvas.Top="0.0"/>
+                        <Path Stroke="#FF6FB3F6" StrokeThickness="3" Data="M11,81 A73,73 0 1 0 11,76 Z M74,80 A10,10 0 1 0 74,77 Z M78,72 L84,30 M 84,30 L90,70 M85,89 L110,105 M110,105 L95,80" Canvas.Top="0.0"/>
+                        <Path Fill="White"  Data="M136 146 A17,17 0 1 1 129,126 "/>
+                        <Path Stroke="#FF6FB3F6"  StrokeThickness="3" Fill="White" Data="M82,150 S 90,164 108,153 M106 146 A17,17 0 1 1 109,126 M109,125 C100,170 130,169 123,139 M124,151 Q 128,150 130,151 M129,151 C123,165 162,168 154,153 M134,131 Q 122,159 161,151 M145,136 Q 166,131 160,152 M109,127 S 150,110 146,136 "/>
+                    </Canvas>
+                </Viewbox>
+           
+            <Label Name="LblMsg" Margin="0,170,0,0"  Height="30" FontSize="15" Content="历史记录为空" HorizontalAlignment="Center" Foreground="#FF7F7F7F"/>
+            </Grid>
 
         </Grid>
     </Grid>

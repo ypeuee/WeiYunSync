@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\history.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\history.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AppControlLibrary\AppControlLibrary.csproj" />
   </ItemGroup>
 
