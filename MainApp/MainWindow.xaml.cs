@@ -25,10 +25,7 @@ namespace MainApp
 
         public MainWindow()
         {
-            InitializeComponent();
-
-           
-
+            InitializeComponent();           
         }
 
         /// <summary>
