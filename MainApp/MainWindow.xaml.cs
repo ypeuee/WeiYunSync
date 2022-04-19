@@ -25,8 +25,37 @@ namespace MainApp
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+
+            #region 自动关闭已打开的菜单
+            //窗体失去焦点自动关闭菜单
+            this.Deactivated += (o, e) =>
+            {
+                if (ucMenu.Visibility == Visibility.Visible)
+                    ucMenu.Visibility = Visibility.Hidden;
+            };
+
+            //单击窗体自动关闭菜单
+            this.MouseDown += (o, e) =>
+            {
+                if (ucMenu.Visibility == Visibility.Visible)
+                    ucMenu.Visibility = Visibility.Hidden;
+            };
+            #endregion
+
+            ucMain.StartClick += (o, e) =>
+            {
+                ucScan.Visibility = Visibility.Visible;
+                Canvas.SetZIndex(ucScan, 100);//置于最顶层
+            };
+            //ucScan.SttopClick += (o, e) =>
+            //{
+            //    ucScan.Visibility = Visibility.Hidden;
+            //};
         }
+
+
+        #region 标题栏
 
         /// <summary>
         /// 关闭
@@ -35,9 +64,11 @@ namespace MainApp
         /// <param name="e"></param>
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-            //WindowState = WindowState.Minimized;
-            //ShowInTaskbar = false;
+            WindowState = WindowState.Minimized;
+            ShowInTaskbar = false;
+            Close();
         }
+
         /// <summary>
         /// 最大化
         /// </summary>
@@ -48,6 +79,7 @@ namespace MainApp
             WindowState = WindowState.Maximized;
             ShowOrhide();
         }
+
         /// <summary>
         /// 正常大小
         /// </summary>
@@ -58,6 +90,7 @@ namespace MainApp
             WindowState = WindowState.Normal;
             ShowOrhide();
         }
+
         /// <summary>
         /// 最小化
         /// </summary>
@@ -65,7 +98,7 @@ namespace MainApp
         /// <param name="e"></param>
         private void btn_min_Click(object sender, RoutedEventArgs e)
         {
-            //WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         /// <summary>
@@ -81,6 +114,7 @@ namespace MainApp
                 ShowOrhide();
             }
         }
+
         /// <summary>
         /// 显示或者隐藏按钮
         /// </summary>
@@ -89,20 +123,37 @@ namespace MainApp
             switch (WindowState)
             {
                 case WindowState.Normal:
-
+                    //btn_normal.Visibility = Visibility.Collapsed;
+                    //btn_max.Visibility = Visibility.Visible;
                     break;
                 case WindowState.Minimized:
                     break;
                 case WindowState.Maximized:
-
+                    //btn_max.Visibility = Visibility.Collapsed;
+                    //btn_normal.Visibility = Visibility.Visible;
                     break;
                 default:
                     break;
             }
         }
 
-
-
+        /// <summary>
+        /// 打开或关闭菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_menu_Click(object sender, RoutedEventArgs e)
+        {
+            //单击工具栏，打开或关闭菜单
+            if (ucMenu.Visibility == Visibility.Hidden)
+            {
+                ucMenu.Visibility = Visibility.Visible;
+                Canvas.SetZIndex(ucMenu, 101);//置于最顶层
+            }
+            else
+                ucMenu.Visibility = Visibility.Hidden;
+        }
+        #endregion
 
 
     }

@@ -14,6 +14,8 @@
         Height="524" Width="340" 
         MinHeight="524" MinWidth="340" 
         MaxHeight="524" MaxWidth="340" 
+                
+ 
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -25,16 +27,15 @@
         <Grid Grid.Row="0" Background="{StaticResource Title.Static.Background}">
             <StackPanel Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Label Content="微云同步助手" FontWeight="Bold"  Height="50" Width="225" FontSize="13" Foreground="{StaticResource Title.Static.Foreground}" VerticalContentAlignment="Center"></Label>
-                <Button x:Name="btn_menu" Height="50" Width="35" Style="{StaticResource MenuStyle}" />
+                <Button x:Name="btn_menu" Height="50" Width="35" Style="{StaticResource MenuStyle}" Click="btn_menu_Click" />
                 <Button x:Name="btn_min" Height="50" Width="35" Style="{StaticResource MinimizeStyle}" Click="btn_min_Click"/>
                 <Button x:Name="btn_close" Height="50" Width="35" Style="{StaticResource CloseStyle}" Click="btn_close_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-
-            <views:UcMenu/>
-         
-            <!--<views:UcScan/>-->
+            <views:UcMenu x:Name="ucMenu" HorizontalAlignment="Right" VerticalContentAlignment="Top"/>
+            <views:UcScan x:Name="ucScan"/>
+            <views:UcMain x:Name="ucMain"/>
         </Grid>
     </Grid>
 </src:BaseWindow>

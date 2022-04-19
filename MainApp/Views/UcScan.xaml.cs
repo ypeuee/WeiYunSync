@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,37 @@ namespace MainApp.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 扫描结束事件
+        /// </summary>
+        [Category("Behavior")]
+        public event RoutedEventHandler StopClick;
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (meter.IsStarted)
             {
                 meter.Stop();
+                this.Visibility = Visibility.Hidden;
+
+                if (StopClick != null)
+                    StopClick(sender, e);
+            }
+            else
+            {
+                meter.Start();
+            }
+        }
+        private void meter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (meter.IsStarted)
+            {
+                meter.Stop();
+                this.Visibility = Visibility.Hidden;
+
+                if (StopClick != null)
+                    StopClick(sender, e);
+
             }
             else
             {
