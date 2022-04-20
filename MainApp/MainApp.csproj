@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppControlLibrary\AppControlLibrary.csproj" />
+    <Folder Include="Controls\Convers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Radar\RadarChart.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Radar\RadarMeter.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

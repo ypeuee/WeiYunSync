@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:radar="clr-namespace:RadarControl;assembly=AppControlLibrary"
+              xmlns:radar="clr-namespace:MainApp.Controls.Radar"
              xmlns:local="clr-namespace:MainApp.Views"
              mc:Ignorable="d" 
-              d:DesignHeight="470"  d:DesignWidth="340" Background="White" Loaded="UserControl_Loaded" >
+              d:DesignHeight="470"  d:DesignWidth="340" Background="White" IsVisibleChanged="UserControl_IsVisibleChanged" >
     <Grid>
         <DockPanel Margin="0,40,0,0" Height="300" VerticalAlignment="Top">
             <radar:RadarMeter DockPanel.Dock="Left" Width="300" 
-                          Name="meter" ToolTip="正在同步"
+                          x:Name="meter" ToolTip="正在同步"
                           MouseDown="meter_MouseDown" 
                           DialFill="White" DialStroke="#FF009CFE" DialStrokeThickness="1" ScanOpacity="1">
                 <radar:RadarMeter.ScanFill>

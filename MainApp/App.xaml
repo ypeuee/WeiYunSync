@@ -6,15 +6,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/CheckBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/TreeView.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/MenuStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/ProgressBar.xaml"/>
-
                 <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/Title.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/MainView.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MainApp;component/Styles/LogView.xaml"/>
-                
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

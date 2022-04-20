@@ -84,34 +84,28 @@ namespace MainApp.Views
                     DisplayName = "同步于2022/4/8 14:59:38",
                     Children = new ObservableCollection<OrgModel>()
                     {
+                   
                         new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                            SurName="W",
+                            Name="Word文档1",
+                            Info=@"C:\Users\repos\WpfApp1\Word文档1.xlsx",
+                             Count="0.3 B"
                         },
                             new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
-                        },
-                            new OrgModel(){
-                            //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                             SurName="W",
+                            Name="Word文档2",
+                            Info=@"C:\Users\repos\WpfApp1\Word文档2.xlsx",
+                             Count="0.3 B"
 
                     },
                             new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                              SurName="W",
+                            Name="Word文档3",
+                            Info=@"C:\Users\repos\WpfApp1\Word文档3.xlsx",
+                             Count="0.3 B"
                     },
                 },
                 },
@@ -123,32 +117,32 @@ namespace MainApp.Views
                     {
                         new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                            SurName="X",
+                            Name="文档1",
+                            Info=@"C:\Users\repos\WpfApp1\文档1.xlsx",
+                             Count="0.2 B"
                         },
                             new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                           SurName="X",
+                            Name="文档2",
+                            Info=@"C:\Users\repos\WpfApp1\文档2.xlsx",
+                             Count="0.2 B"
                         },
                             new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                          SurName="X",
+                            Name="文档3",
+                            Info=@"C:\Users\repos\WpfApp1\文档3.xlsx",
+                             Count="0.2 B"
 
                     },
                             new OrgModel(){
                             //IsGrouping=false,
-                            SurName="刘",
-                            Name="刘棒",
-                            Info="我要走向天空！",
-                            Count=3
+                             SurName="X",
+                            Name="文档4",
+                            Info=@"C:\Users\repos\WpfApp1\文档4.xlsx",
+                             Count="0.2 B"
                     },
                 },
                 }
@@ -167,7 +161,7 @@ namespace MainApp.Views
         public string SurName { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
-        public int Count { get; set; }
+        public string Count { get; set; }
     }
 
     public class BoolToVisible : IValueConverter

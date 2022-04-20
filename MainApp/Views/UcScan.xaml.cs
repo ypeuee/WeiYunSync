@@ -32,7 +32,8 @@ namespace MainApp.Views
         [Category("Behavior")]
         public event RoutedEventHandler StopClick;
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+      
+        private void meter_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (meter.IsStarted)
             {
@@ -47,18 +48,10 @@ namespace MainApp.Views
                 meter.Start();
             }
         }
-        private void meter_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (meter.IsStarted)
-            {
-                meter.Stop();
-                this.Visibility = Visibility.Hidden;
-
-                if (StopClick != null)
-                    StopClick(sender, e);
-
-            }
-            else
+            if (!meter.IsStarted)
             {
                 meter.Start();
             }
