@@ -1,11 +1,11 @@
-# .NetCore WPF高仿微云同步助手
+# .NetCore WPF微云同步助手
 __项目还在开发中__
 
-.Net Core 5.0 WPF
+_.Net Core 5.0 WPF_
 
-纯然的U面无逻辑页面，大分部都花在写WPF样式，控件排版上，有需要的可提取直接取取使用。
+纯然的U面无逻辑页面，大分部都花在写WPF样式，控件排版上.当然部分控件格式源于网络。
 
-开发此项目只为练手，看到微软在.net core中出了WPF，手痒想试试，看到正在使用的微云同步工具，就花了点时间模拟出来。
+开发此项目只为练手，看到微软在.net core中出了WPF，手痒想试试，看到正在使用的微云同步工具，就花了点时间模拟出来。有需要的同学可提取直接取取使用。
 
 本项目UI使用.net core wpf开发，所有图标都是代码画出来。图标源于 [Material Design Icons](https://materialdesignicons.com/)
 
